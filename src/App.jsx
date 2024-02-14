@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useReducer } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Posts from "./pages/Posts";
+import Navbar from "./components/shared/Navbar";
 
-function App() {
-  const [count, setCount] = useState(0)
+import {
+  PostCrud,
+  PostsContext,
+  UsersContext,
+  initialPostCrud,
+  initialPostsState,
+  initialUsersState,
+} from "./context/MainContexts";
+import { postCrudReducer } from "./reducers/postCrudReducers";
+import { postsReducer } from "./reducers/postsReducers";
+import { usersReducer } from "./reducers/usersReducers";
+
+import AllPostsPage from "./pages/AllPostsPage";
+import CreateEditPage from "./pages/CreateEditPostPage";
+import CreateEditUserPage from "./pages/CreateEditUserPage";
+
+const App = () => {
+  const [postCrudData, postCrudDispatch] = useReducer(
+    postCrudReducer,
+    initialPostCrud
+  );
+  const [data, dispatch] = useReducer(postsReducer, initialPostsState);
+  const [usersData, usersDispatch] = useReducer(
+    usersReducer,
+    initialUsersState
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <UsersContext.Provider
+        value={{
+          data: usersData,
+          dispatch: usersDispatch,
+        }}
+      >
+        <PostCrud.Provider
+          value={{
+            data: postCrudData,
+            dispatch: postCrudDispatch,
+          }}
+        >
+          <PostsContext.Provider
+            value={{
+              data,
+              dispatch,
+            }}
+          >
+            <div className="container py-5">
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/posts/:id" element={<Posts />} />
+                <Route path="/posts" element={<AllPostsPage />} />
+                <Route path="/create" element={<CreateEditPage />} />
+                <Route path="/edit/:id" element={<CreateEditPage />} />
+                <Route path="/createUser" element={<CreateEditUserPage />} />
+                <Route path="/editUser/:id" element={<CreateEditUserPage />} />
+              </Routes>
+            </div>
+          </PostsContext.Provider>
+        </PostCrud.Provider>
+      </UsersContext.Provider>
+    </Router>
+  );
+};
 
-export default App
+export default App;
