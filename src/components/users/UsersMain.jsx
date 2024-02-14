@@ -28,9 +28,7 @@ const UserTable = () => {
   useEffect(() => {
     const abortController = new AbortController();
 
-    const query = `_page=${searchParams.get("_page")}&q=${searchParams.get(
-      "q"
-    )}`;
+    const query = `q=${searchParams.get("q")}`;
 
     getAllUsers(dispatch, query, abortController);
 
