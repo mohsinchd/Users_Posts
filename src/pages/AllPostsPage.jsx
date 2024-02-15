@@ -20,8 +20,6 @@ const AllPostsPage = () => {
     });
 
     console.log(searchParams.get("_page"), searchParams.get("q"));
-
-    // getPosts(dispatch,  abort);
   };
 
   useEffect(() => {

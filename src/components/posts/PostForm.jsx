@@ -9,7 +9,7 @@ const PostForm = ({
   buttonTitle,
   handleEdit,
   handleCreate,
-  checkEdit,
+  isEditForm,
 }) => {
   const { handleChange, handleSubmit, handleBlur, errors, touched, values } =
     useFormik({
@@ -19,7 +19,7 @@ const PostForm = ({
     });
 
   function submitHandler(values) {
-    checkEdit ? handleEdit(values) : handleCreate(values);
+    isEditForm ? handleEdit(values) : handleCreate(values);
   }
 
   return (

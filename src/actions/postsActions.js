@@ -1,6 +1,15 @@
-import axios from "axios";
-import { API_URL } from "../context/MainContexts";
-import { errorHandler } from "../utils/errorHandler";
+import { handleApiCall } from "../utils/helpers";
+
+import { getPostCommentCall, getUserPostCall } from "../utils/networkRequests";
+
+import {
+  GET_ALL_POSTS_LOADING,
+  GET_ALL_POSTS_SUCCESS,
+  GET_ALL_POSTS_ERROR,
+  GET_ALL_COMMENTS_SUCCESS,
+  GET_ALL_COMMENTS_ERROR,
+  GET_ALL_COMMENTS_LOADING,
+} from "../constants/postsConstants";
 
 export const getUserPosts = async (
   dispatch,
@@ -9,42 +18,28 @@ export const getUserPosts = async (
   limit = 5,
   page = 1
 ) => {
-  try {
-    dispatch({
-      type: "GET_ALL_POSTS_LOADING",
-    });
-
-    const { data } = await axios.get(
-      `${API_URL}/users/${id}/posts?_page=${page}&_limit=${limit}`,
-      {
-        signal: abortController.signal,
-      }
-    );
-
-    dispatch({
-      type: "GET_ALL_POSTS_SUCCESS",
-      payload: data,
-    });
-  } catch (error) {
-    errorHandler(error, dispatch, "GET_ALL_POSTS_ERROR");
-  }
+  await handleApiCall(
+    dispatch,
+    GET_ALL_POSTS_LOADING,
+    GET_ALL_POSTS_SUCCESS,
+    GET_ALL_POSTS_ERROR,
+    getUserPostCall,
+    id,
+    page,
+    limit,
+    abortController
+  );
 };
 
 export const getPostComments = async (dispatch, id) => {
-  try {
-    dispatch({
-      type: "GET_ALL_COMMENTS_LOADING",
-    });
-
-    const { data } = await axios.get(`${API_URL}/posts/${id}/comments`);
-
-    dispatch({
-      type: "GET_ALL_COMMENTS_SUCCESS",
-      payload: data,
-    });
-  } catch (error) {
-    errorHandler(error, dispatch, "GET_ALL_COMMENTS_ERROR");
-  }
+  await handleApiCall(
+    dispatch,
+    GET_ALL_COMMENTS_LOADING,
+    GET_ALL_COMMENTS_SUCCESS,
+    GET_ALL_COMMENTS_ERROR,
+    getPostCommentCall,
+    id
+  );
 };
 
 export const filterPosts = (dispatch, id, data) => {

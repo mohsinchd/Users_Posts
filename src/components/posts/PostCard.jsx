@@ -1,17 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CommentsModal from "./CommentsModal";
-import { deletePost } from "../../actions/postCrudActions";
-import { PostCrud, PostsContext } from "../../context/MainContexts";
+import { PostsContext } from "../../context/MainContexts";
 import { Link } from "react-router-dom";
 import { filterPosts } from "../../actions/postsActions";
 
 const PostCard = ({ post, id }) => {
-  const [modalShow, setModalShow] = React.useState(false);
-  const { dispatch } = useContext(PostCrud);
+  const [modalShow, setModalShow] = useState(false);
   const { data, dispatch: postsDispatch } = useContext(PostsContext);
 
   const deleteHandler = () => {
-    deletePost(dispatch, id);
     filterPosts(postsDispatch, id, data);
   };
 

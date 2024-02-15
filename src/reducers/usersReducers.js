@@ -1,11 +1,24 @@
+import {
+  GET_ALL_USERS_LOADING,
+  GET_ALL_USERS_SUCCESS,
+  GET_ALL_USERS_ERROR,
+  CREATE_NEW_USER_LOADING,
+  CREATE_NEW_USER_SUCCESS,
+  CREATE_NEW_USER_ERROR,
+  EDIT_USER_LOADING,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_ERROR,
+  FILTER_USER,
+} from "../constants/usersConstants";
+
 export const usersReducer = (state, action) => {
   switch (action.type) {
-    case "GET_ALL_USERS_LOADING":
+    case GET_ALL_USERS_LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case "GET_ALL_USERS_SUCCESS":
+    case GET_ALL_USERS_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -13,7 +26,7 @@ export const usersReducer = (state, action) => {
         error: "",
         users: [state.user, ...action.payload],
       };
-    case "GET_ALL_USERS_ERROR":
+    case GET_ALL_USERS_ERROR:
       return {
         ...state,
         isLoading: false,
@@ -21,19 +34,19 @@ export const usersReducer = (state, action) => {
         error: action.payload,
         users: [],
       };
-    case "CREATE_NEW_USER_LOADING":
+    case CREATE_NEW_USER_LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case "CREATE_NEW_USER_SUCCESS":
+    case CREATE_NEW_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
         user: action.payload,
       };
-    case "CREATE_NEW_USER_ERROR":
+    case CREATE_NEW_USER_ERROR:
       return {
         ...state,
         isLoading: false,
@@ -43,12 +56,12 @@ export const usersReducer = (state, action) => {
         error: action.payload,
       };
 
-    case "EDIT_USER_LOADING":
+    case EDIT_USER_LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case "EDIT_USER_SUCCESS":
+    case EDIT_USER_SUCCESS:
       console.log(action.payload);
       return {
         ...state,
@@ -62,7 +75,7 @@ export const usersReducer = (state, action) => {
           }
         }),
       };
-    case "EDIT_USER_ERROR":
+    case EDIT_USER_ERROR:
       return {
         ...state,
         isLoading: false,
@@ -70,7 +83,7 @@ export const usersReducer = (state, action) => {
         error: action.payload,
       };
 
-    case "FILTER_USER":
+    case FILTER_USER:
       return {
         ...state,
         users: state.users.filter(

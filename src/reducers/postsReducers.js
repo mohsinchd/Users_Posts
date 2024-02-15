@@ -1,11 +1,20 @@
+import {
+  GET_ALL_POSTS_LOADING,
+  GET_ALL_POSTS_SUCCESS,
+  GET_ALL_POSTS_ERROR,
+  GET_ALL_COMMENTS_SUCCESS,
+  GET_ALL_COMMENTS_ERROR,
+  GET_ALL_COMMENTS_LOADING,
+} from "../constants/postsConstants";
+
 export const postsReducer = (state, action) => {
   switch (action.type) {
-    case "GET_ALL_POSTS_LOADING":
+    case GET_ALL_POSTS_LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case "GET_ALL_POSTS_SUCCESS":
+    case GET_ALL_POSTS_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -13,7 +22,7 @@ export const postsReducer = (state, action) => {
         error: "",
         posts: action.payload,
       };
-    case "GET_ALL_POSTS_ERROR":
+    case GET_ALL_POSTS_ERROR:
       return {
         ...state,
         isLoading: false,
@@ -21,19 +30,19 @@ export const postsReducer = (state, action) => {
         error: action.payload,
         posts: [],
       };
-    case "GET_ALL_COMMENTS_LOADING":
+    case GET_ALL_COMMENTS_LOADING:
       return {
         ...state,
         modalLoading: true,
       };
-    case "GET_ALL_COMMENTS_SUCCESS":
+    case GET_ALL_COMMENTS_SUCCESS:
       return {
         ...state,
         modalLoading: false,
         isError: false,
         comments: action.payload,
       };
-    case "GET_ALL_COMMENTS_ERROR":
+    case GET_ALL_COMMENTS_ERROR:
       return {
         ...state,
         modalLoading: false,

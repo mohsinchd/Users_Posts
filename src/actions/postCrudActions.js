@@ -1,69 +1,69 @@
-import axios from "axios";
-import { API_URL } from "../context/MainContexts";
-import { errorHandler } from "../utils/errorHandler";
+import {
+  GET_ALL_POSTS_ERROR,
+  GET_ALL_POSTS_LOADING,
+  GET_ALL_POSTS_SUCCESS,
+  EDIT_POST_ERROR,
+  EDIT_POST_LOADING,
+  EDIT_POST_SUCCESS,
+  CREATE_POST_ERROR,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_LOADING,
+  DELETE_POST_ERROR,
+  DELETE_POST_LOADING,
+  DELETE_POST_SUCCESS,
+} from "../constants/postsCrudConstants";
+
+import {
+  createNewPostCall,
+  deletePostCall,
+  editPostCall,
+  getPostsCall,
+} from "../utils/networkRequests";
+
+import { handleApiCall } from "../utils/helpers";
 
 export const createNewPost = async (dispatch, newData) => {
-  try {
-    dispatch({
-      type: "CREATE_POST_LOADING",
-    });
-
-    const { data } = await axios.post(`${API_URL}/posts`, newData);
-
-    dispatch({
-      type: "CREATE_POST_SUCCESS",
-      payload: data,
-    });
-  } catch (error) {
-    errorHandler(error, dispatch, "CREATE_POST_ERROR");
-  }
+  handleApiCall(
+    dispatch,
+    CREATE_POST_LOADING,
+    CREATE_POST_SUCCESS,
+    CREATE_POST_ERROR,
+    createNewPostCall,
+    newData
+  );
 };
 
 export const deletePost = async (dispatch, id) => {
-  try {
-    dispatch({
-      type: "DELETE_POST_LOADING",
-    });
-
-    const { data } = await axios.delete(`${API_URL}/posts/${id}`);
-    dispatch({
-      type: "DELETE_POST_SUCCESS",
-      payload: id,
-    });
-  } catch (error) {
-    errorHandler(error, dispatch, "DELETE_POST_ERROR");
-  }
+  handleApiCall(
+    dispatch,
+    DELETE_POST_LOADING,
+    DELETE_POST_SUCCESS,
+    DELETE_POST_ERROR,
+    deletePostCall,
+    id
+  );
 };
 
 export const editPost = async (dispatch, id, newData) => {
-  try {
-    dispatch({ type: "EDIT_POST_LOADING" });
-
-    const { data } = await axios.put(`${API_URL}/posts/${id}`, newData);
-    dispatch({
-      type: "EDIT_POST_SUCCESS",
-      payload: data,
-    });
-  } catch (error) {
-    errorHandler(error, dispatch, "EDIT_POST_ERROR");
-  }
+  handleApiCall(
+    dispatch,
+    EDIT_POST_LOADING,
+    EDIT_POST_SUCCESS,
+    EDIT_POST_ERROR,
+    editPostCall,
+    id,
+    newData
+  );
 };
 
 export const getPosts = async (dispatch, query, abort) => {
-  try {
-    dispatch({
-      type: "GET_ALL_POSTS_LOADING",
-    });
-
-    const { data } = await axios.get(`${API_URL}/posts?${query}`, {
-      signal: abort.signal,
-    });
-
-    dispatch({
-      type: "GET_ALL_POSTS_SUCCESS",
-      payload: data,
-    });
-  } catch (error) {
-    errorHandler(error, dispatch, "GET_ALL_POSTS_ERROR");
-  }
+  handleApiCall(
+    dispatch,
+    GET_ALL_POSTS_LOADING,
+    GET_ALL_POSTS_SUCCESS,
+    GET_ALL_POSTS_ERROR,
+    getPostsCall,
+    query,
+    abort
+  );
 };

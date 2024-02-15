@@ -7,11 +7,7 @@ import { createNewPost, editPost } from "../actions/postCrudActions";
 const CreateEditPage = () => {
   const { id } = useParams();
   const { data, postsDispatch } = useContext(PostsContext);
-  const { dispatch, data: crudData } = useContext(PostCrud);
-  const post =
-    data.posts.length > 0
-      ? data.posts.find((post) => String(post.id) === String(id))
-      : crudData.posts.find((post) => String(post.id) === String(id));
+  const { dispatch } = useContext(PostCrud);
 
   const handleCreate = (values) => {
     createNewPost(dispatch, values, data, postsDispatch);
@@ -26,17 +22,17 @@ const CreateEditPage = () => {
       <h1>{id ? "Edit Post" : "Create Post"}</h1>
       {id ? (
         <PostForm
-          initialData={{ title: post.title, body: post.body }}
+          initialData={{ title: "", body: "" }}
           buttonTitle={"Edit Post"}
           handleEdit={handleEdit}
-          checkEdit={true}
+          isEditForm={true}
         />
       ) : (
         <PostForm
           initialData={{ title: "", body: "" }}
           buttonTitle={"Create Post"}
           handleCreate={handleCreate}
-          checkEdit={false}
+          isEditForm={false}
         />
       )}
     </>

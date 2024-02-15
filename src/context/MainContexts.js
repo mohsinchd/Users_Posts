@@ -1,5 +1,4 @@
 import { createContext } from "react";
-export const API_URL = "https://jsonplaceholder.typicode.com";
 
 export const initialUsersState = {
   isLoading: true,

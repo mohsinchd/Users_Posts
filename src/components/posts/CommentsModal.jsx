@@ -11,9 +11,7 @@ const CommentsModal = (props) => {
   const { modalLoading, comments } = data;
 
   useEffect(() => {
-    if (props.show) {
-      getPostComments(dispatch, props.id);
-    }
+    props.show && getPostComments(dispatch, props.id);
   }, [props.show]);
 
   return modalLoading ? null : (
@@ -29,11 +27,9 @@ const CommentsModal = (props) => {
       </Modal.Header>
 
       <Modal.Body>
-        <>
-          {comments.map((comment) => (
-            <p key={comment.id}>{comment.body}</p>
-          ))}
-        </>
+        {comments.map((comment) => (
+          <p key={comment.id}>{comment.body}</p>
+        ))}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
