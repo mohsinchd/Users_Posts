@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
 import { usersReducer } from "../reducers/usersReducers";
-import { initialUsersState } from "../context/MainContexts";
+import { initialUsersState } from "./mainContexts";
 
-import { UsersContext } from "../context/MainContexts";
+import { UsersContext } from "./mainContexts";
 
-const UserContextWrapper = ({ children }) => {
+const USER = ({ children }) => {
   const [usersData, usersDispatch] = useReducer(
     usersReducer,
     initialUsersState
@@ -22,4 +22,4 @@ const UserContextWrapper = ({ children }) => {
   );
 };
 
-export default UserContextWrapper;
+export default USER;

@@ -5,10 +5,9 @@ import {
   useGlobalFilter,
   usePagination,
 } from "react-table";
-import { COLUMNS } from "./UserColumns";
-import GlobalFilter from "../shared/GlobalFilter";
-import GlobalTable from "../shared/GlobalTable";
-import TableButtons from "../shared/TableButtons";
+import { COLUMNS } from "./userColumns";
+import GlobalTable from "../shared/globalTable";
+import TableButtons from "../shared/tableButtons";
 
 const UsersTable = ({ usersData }) => {
   const tableInstance = useTable(

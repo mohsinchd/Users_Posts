@@ -5,7 +5,10 @@ import {
   GET_ALL_COMMENTS_SUCCESS,
   GET_ALL_COMMENTS_ERROR,
   GET_ALL_COMMENTS_LOADING,
-} from "../constants/postsConstants";
+  DELETE_POSTS_LOADING,
+  DELETE_POSTS_ERROR,
+  DELETE_POSTS_SUCCESS,
+} from "../constants/actionTypesPosts";
 
 export const postsReducer = (state, action) => {
   switch (action.type) {
@@ -50,11 +53,23 @@ export const postsReducer = (state, action) => {
         error: action.payload,
         comments: [],
       };
-
-    case "FILTER_POSTS":
+    case DELETE_POSTS_LOADING:
       return {
         ...state,
-        ...action.payload,
+        isLoading: true,
+      };
+    case DELETE_POSTS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        posts: state.posts.filter(
+          (post) => String(post.id) !== String(action.payload)
+        ),
+      };
+    case DELETE_POSTS_ERROR:
+      return {
+        ...state,
+        isLoading: false,
       };
 
     default:

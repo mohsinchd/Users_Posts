@@ -8,8 +8,10 @@ import {
   EDIT_USER_LOADING,
   EDIT_USER_SUCCESS,
   EDIT_USER_ERROR,
-  FILTER_USER,
-} from "../constants/usersConstants";
+  DELETE_USER_LOADING,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_ERROR,
+} from "../constants/actionTypesUsers";
 
 export const usersReducer = (state, action) => {
   switch (action.type) {
@@ -62,7 +64,6 @@ export const usersReducer = (state, action) => {
         isLoading: true,
       };
     case EDIT_USER_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
@@ -83,19 +84,25 @@ export const usersReducer = (state, action) => {
         error: action.payload,
       };
 
-    case FILTER_USER:
+    case DELETE_USER_LOADING:
       return {
         ...state,
+        isLoading: true,
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
         users: state.users.filter(
           (user) => String(user.id) !== String(action.payload)
         ),
       };
-
-    case "CLEAR_USER":
+    case DELETE_USER_ERROR:
       return {
         ...state,
-        user: {},
+        isLoading: false,
       };
+
     default:
       return state;
   }

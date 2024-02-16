@@ -2,10 +2,10 @@ import React from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "../../utils/validationSchema";
 import { inputTypes } from "../../utils/inputTypes";
-import CustomInput from "./CustomInput";
+import CustomInput from "./customInput";
 
 const PostForm = ({
-  initialData,
+  initialValues,
   buttonTitle,
   handleEdit,
   handleCreate,
@@ -13,7 +13,7 @@ const PostForm = ({
 }) => {
   const { handleChange, handleSubmit, handleBlur, errors, touched, values } =
     useFormik({
-      initialValues: initialData,
+      initialValues,
       validationSchema,
       onSubmit: submitHandler,
     });

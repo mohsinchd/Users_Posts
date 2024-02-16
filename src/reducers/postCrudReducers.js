@@ -11,7 +11,7 @@ import {
   DELETE_POST_ERROR,
   DELETE_POST_LOADING,
   DELETE_POST_SUCCESS,
-} from "../constants/postsCrudConstants";
+} from "../constants/actionTypesPostCrud";
 
 export const postCrudReducer = (state, action) => {
   switch (action.type) {

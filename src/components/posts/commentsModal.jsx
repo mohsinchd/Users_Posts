@@ -1,18 +1,18 @@
 import React, { useEffect, useContext } from "react";
-import { PostsContext } from "../../context/MainContexts";
+import { PostsContext } from "../../context/mainContexts";
 
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { getPostComments } from "../../actions/postsActions";
 
-const CommentsModal = (props) => {
+const CommentsModal = ({ id, show, onHide }) => {
   const { dispatch, data } = useContext(PostsContext);
 
   const { modalLoading, comments } = data;
 
   useEffect(() => {
-    props.show && getPostComments(dispatch, props.id);
-  }, [props.show]);
+    show && getPostComments(dispatch, id);
+  }, [show]);
 
   return modalLoading ? null : (
     <Modal
@@ -32,7 +32,7 @@ const CommentsModal = (props) => {
         ))}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

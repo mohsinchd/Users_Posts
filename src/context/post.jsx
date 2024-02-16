@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
 import { postsReducer } from "../reducers/postsReducers";
-import { initialPostsState } from "../context/MainContexts";
+import { initialPostsState } from "./mainContexts";
 
-import { PostsContext } from "../context/MainContexts";
+import { PostsContext } from "./mainContexts";
 
-const PostsContextWrapper = ({ children }) => {
+const POST = ({ children }) => {
   const [data, dispatch] = useReducer(postsReducer, initialPostsState);
 
   return (
@@ -19,4 +19,4 @@ const PostsContextWrapper = ({ children }) => {
   );
 };
 
-export default PostsContextWrapper;
+export default POST;

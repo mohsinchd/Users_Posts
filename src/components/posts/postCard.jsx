@@ -1,15 +1,16 @@
 import React, { useContext, useState } from "react";
-import CommentsModal from "./CommentsModal";
-import { PostsContext } from "../../context/MainContexts";
-import { Link } from "react-router-dom";
+import CommentsModal from "./commentsModal";
+import { PostsContext } from "../../context/mainContexts";
+import { Link, generatePath } from "react-router-dom";
 import { filterPosts } from "../../actions/postsActions";
+import { EDIT_POST } from "../../constants/routeConstants";
 
 const PostCard = ({ post, id }) => {
   const [modalShow, setModalShow] = useState(false);
-  const { data, dispatch: postsDispatch } = useContext(PostsContext);
+  const { dispatch } = useContext(PostsContext);
 
   const deleteHandler = () => {
-    filterPosts(postsDispatch, id, data);
+    filterPosts(dispatch, id);
   };
 
   return (
@@ -30,7 +31,7 @@ const PostCard = ({ post, id }) => {
             Delete Post
           </button>
           <button className="ms-2 btn btn-dark">
-            <Link to={`/edit/${id}`} className="nav-link">
+            <Link to={generatePath(EDIT_POST, { id })} className="nav-link">
               Edit Post
             </Link>
           </button>

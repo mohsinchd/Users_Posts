@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import UserForm from "../components/users/UserForm";
+import UserForm from "../components/users/userForm";
 import { initialValuesUser } from "../utils/inputTypes";
 import { createNewUser, editUser } from "../actions/usersActions";
-import { UsersContext } from "../context/MainContexts";
+import { UsersContext } from "../context/mainContexts";
 
-const CreateEditUserPage = () => {
+const UsersForm = () => {
   const { id } = useParams();
 
   const { dispatch, data } = useContext(UsersContext);
@@ -30,7 +30,7 @@ const CreateEditUserPage = () => {
           handleCreate={handleCreate}
           handleEdit={handleEdit}
           checkEdit={true}
-          initialValuesUser={{
+          initialValues={{
             name: user.name,
             username: user.username,
             email: user.email,
@@ -56,7 +56,7 @@ const CreateEditUserPage = () => {
         />
       ) : (
         <UserForm
-          initialValuesUser={initialValuesUser}
+          initialValues={initialValuesUser}
           handleCreate={handleCreate}
           handleEdit={handleEdit}
           checkEdit={false}
@@ -67,4 +67,4 @@ const CreateEditUserPage = () => {
   );
 };
 
-export default CreateEditUserPage;
+export default UsersForm;

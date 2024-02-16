@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import PostForm from "../components/posts/PostForm";
-import { PostCrud, PostsContext } from "../context/MainContexts";
+import PostForm from "../components/posts/postForm";
+import { PostCrud, PostsContext } from "../context/mainContexts";
 import { createNewPost, editPost } from "../actions/postCrudActions";
 
-const CreateEditPage = () => {
+const PostsForm = () => {
   const { id } = useParams();
   const { data, postsDispatch } = useContext(PostsContext);
   const { dispatch } = useContext(PostCrud);
@@ -22,14 +22,14 @@ const CreateEditPage = () => {
       <h1>{id ? "Edit Post" : "Create Post"}</h1>
       {id ? (
         <PostForm
-          initialData={{ title: "", body: "" }}
+          initialValues={{ title: "", body: "" }}
           buttonTitle={"Edit Post"}
           handleEdit={handleEdit}
           isEditForm={true}
         />
       ) : (
         <PostForm
-          initialData={{ title: "", body: "" }}
+          initialValues={{ title: "", body: "" }}
           buttonTitle={"Create Post"}
           handleCreate={handleCreate}
           isEditForm={false}
@@ -39,4 +39,4 @@ const CreateEditPage = () => {
   );
 };
 
-export default CreateEditPage;
+export default PostsForm;

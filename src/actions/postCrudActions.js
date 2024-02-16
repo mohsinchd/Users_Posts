@@ -11,14 +11,9 @@ import {
   DELETE_POST_ERROR,
   DELETE_POST_LOADING,
   DELETE_POST_SUCCESS,
-} from "../constants/postsCrudConstants";
+} from "../constants/actionTypesPostCrud";
 
-import {
-  createNewPostCall,
-  deletePostCall,
-  editPostCall,
-  getPostsCall,
-} from "../utils/networkRequests";
+import { NetworkRequest } from "../utils/networkRequests";
 
 import { handleApiCall } from "../utils/helpers";
 
@@ -28,7 +23,7 @@ export const createNewPost = async (dispatch, newData) => {
     CREATE_POST_LOADING,
     CREATE_POST_SUCCESS,
     CREATE_POST_ERROR,
-    createNewPostCall,
+    NetworkRequest.createNewPost,
     newData
   );
 };
@@ -39,7 +34,7 @@ export const deletePost = async (dispatch, id) => {
     DELETE_POST_LOADING,
     DELETE_POST_SUCCESS,
     DELETE_POST_ERROR,
-    deletePostCall,
+    NetworkRequest.deletePost,
     id
   );
 };
@@ -50,7 +45,7 @@ export const editPost = async (dispatch, id, newData) => {
     EDIT_POST_LOADING,
     EDIT_POST_SUCCESS,
     EDIT_POST_ERROR,
-    editPostCall,
+    NetworkRequest.editPost,
     id,
     newData
   );
@@ -62,7 +57,7 @@ export const getPosts = async (dispatch, query, abort) => {
     GET_ALL_POSTS_LOADING,
     GET_ALL_POSTS_SUCCESS,
     GET_ALL_POSTS_ERROR,
-    getPostsCall,
+    NetworkRequest.getPosts,
     query,
     abort
   );

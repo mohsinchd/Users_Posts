@@ -26,10 +26,15 @@ export const handleApiCall = async (
 
     const { data } = await apiCall(API_URL, ...params);
 
-    dispatch({
-      type: successType,
-      payload: data,
-    });
+    loadingType.startsWith("DELETE")
+      ? dispatch({
+          type: successType,
+          payload: params[0],
+        })
+      : dispatch({
+          type: successType,
+          payload: data,
+        });
   } catch (error) {
     errorHandler(error, dispatch, errorType);
   }

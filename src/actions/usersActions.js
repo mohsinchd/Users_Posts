@@ -1,10 +1,6 @@
 import { handleApiCall } from "../utils/helpers";
 
-import {
-  createNewUserCall,
-  editUserCall,
-  getAllUsersCall,
-} from "../utils/networkRequests";
+import { NetworkRequest } from "../utils/networkRequests";
 
 import {
   GET_ALL_USERS_LOADING,
@@ -16,8 +12,10 @@ import {
   EDIT_USER_LOADING,
   EDIT_USER_SUCCESS,
   EDIT_USER_ERROR,
-  FILTER_USER,
-} from "../constants/usersConstants";
+  DELETE_USER_LOADING,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_ERROR,
+} from "../constants/actionTypesUsers";
 
 export const getAllUsers = async (dispatch, query, abortController) => {
   await handleApiCall(
@@ -25,7 +23,7 @@ export const getAllUsers = async (dispatch, query, abortController) => {
     GET_ALL_USERS_LOADING,
     GET_ALL_USERS_SUCCESS,
     GET_ALL_USERS_ERROR,
-    getAllUsersCall,
+    NetworkRequest.getAllUsers,
     query,
     abortController
   );
@@ -37,7 +35,7 @@ export const createNewUser = async (dispatch, newUser) => {
     CREATE_NEW_USER_LOADING,
     CREATE_NEW_USER_SUCCESS,
     CREATE_NEW_USER_ERROR,
-    createNewUserCall,
+    NetworkRequest.createNewUser,
     newUser
   );
 };
@@ -48,15 +46,19 @@ export const editUser = async (dispatch, newUser, id) => {
     EDIT_USER_LOADING,
     EDIT_USER_SUCCESS,
     EDIT_USER_ERROR,
-    editUserCall,
+    NetworkRequest.editUser,
     id,
     newUser
   );
 };
 
 export const deleteUser = async (dispatch, id) => {
-  dispatch({
-    type: FILTER_USER,
-    payload: id,
-  });
+  await handleApiCall(
+    dispatch,
+    DELETE_USER_LOADING,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_ERROR,
+    NetworkRequest.deleteUser,
+    id
+  );
 };

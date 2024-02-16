@@ -5,14 +5,14 @@ import { inputTypesUser } from "../../utils/inputTypes";
 import { renderInput } from "./renderInput";
 
 const UserForm = ({
-  initialValuesUser,
+  initialValues,
   buttonTitle,
   checkEdit,
   handleEdit,
   handleCreate,
 }) => {
   const formik = useFormik({
-    initialValues: initialValuesUser,
+    initialValues,
     validationSchema: userValidationSchema,
     onSubmit: submitHandler,
   });

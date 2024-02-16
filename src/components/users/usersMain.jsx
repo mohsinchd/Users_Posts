@@ -1,9 +1,12 @@
 import React, { useContext, useEffect } from "react";
-import { UsersContext } from "../../context/MainContexts";
+import axios from "axios";
+
+import { UsersContext } from "../../context/mainContexts";
 import { getAllUsers } from "../../actions/usersActions";
-import UsersTable from "./UsersTable";
-import GlobalFilter from "../shared/GlobalFilter";
+import UsersTable from "./usersTable";
+import UsersFilter from "../shared/usersFilter";
 import { useSearchParams } from "react-router-dom";
+import Loading from "../shared/loading";
 
 const UserTable = () => {
   const { data, dispatch } = useContext(UsersContext);
@@ -25,33 +28,33 @@ const UserTable = () => {
     };
   });
 
-  useEffect(() => {
-    const abortController = new AbortController();
-
+  function fetchUsers(abortController) {
     const query = `q=${searchParams.get("q")}`;
 
     getAllUsers(dispatch, query, abortController);
+  }
+
+  useEffect(() => {
+    const abortController = new AbortController();
+
+    fetchUsers(abortController);
 
     return () => {
       abortController.abort();
     };
   }, [searchParams]);
 
+  if (isError) return <h2>{error}</h2>;
+
   return (
     <>
       <h1>Users</h1>
       <div className="d-flex justify-content-end">
-        <GlobalFilter setSearchParams={setSearchParams} />
+        <UsersFilter setSearchParams={setSearchParams} />
       </div>
-      {isLoading ? (
-        <h2>Loading...</h2>
-      ) : isError ? (
-        <h2>{error}</h2>
-      ) : (
-        <>
-          <UsersTable usersData={usersData} />
-        </>
-      )}
+      <Loading isLoading={isLoading}>
+        <UsersTable usersData={usersData} />
+      </Loading>
     </>
   );
 };

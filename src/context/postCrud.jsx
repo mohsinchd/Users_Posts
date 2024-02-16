@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
 import { postCrudReducer } from "../reducers/postCrudReducers";
-import { initialPostCrud } from "./MainContexts";
-import { PostCrud } from "./MainContexts";
+import { initialPostCrud } from "./mainContexts";
+import { PostCrud } from "./mainContexts";
 
-const PostCrudContextWrapper = ({ children }) => {
+const POSTCRUD = ({ children }) => {
   const [postCrudData, postCrudDispatch] = useReducer(
     postCrudReducer,
     initialPostCrud
@@ -20,4 +20,4 @@ const PostCrudContextWrapper = ({ children }) => {
   );
 };
 
-export default PostCrudContextWrapper;
+export default POSTCRUD;

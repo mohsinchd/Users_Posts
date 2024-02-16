@@ -1,6 +1,6 @@
 import { handleApiCall } from "../utils/helpers";
 
-import { getPostCommentCall, getUserPostCall } from "../utils/networkRequests";
+import { NetworkRequest } from "../utils/networkRequests";
 
 import {
   GET_ALL_POSTS_LOADING,
@@ -9,7 +9,10 @@ import {
   GET_ALL_COMMENTS_SUCCESS,
   GET_ALL_COMMENTS_ERROR,
   GET_ALL_COMMENTS_LOADING,
-} from "../constants/postsConstants";
+  DELETE_POSTS_LOADING,
+  DELETE_POSTS_ERROR,
+  DELETE_POSTS_SUCCESS,
+} from "../constants/actionTypesPosts";
 
 export const getUserPosts = async (
   dispatch,
@@ -23,7 +26,7 @@ export const getUserPosts = async (
     GET_ALL_POSTS_LOADING,
     GET_ALL_POSTS_SUCCESS,
     GET_ALL_POSTS_ERROR,
-    getUserPostCall,
+    NetworkRequest.getUserPost,
     id,
     page,
     limit,
@@ -37,20 +40,18 @@ export const getPostComments = async (dispatch, id) => {
     GET_ALL_COMMENTS_LOADING,
     GET_ALL_COMMENTS_SUCCESS,
     GET_ALL_COMMENTS_ERROR,
-    getPostCommentCall,
+    NetworkRequest.getPostComment,
     id
   );
 };
 
-export const filterPosts = (dispatch, id, data) => {
-  const newPosts = data.posts.filter((post) => post.id !== id);
-  const newData = {
-    ...data,
-    posts: newPosts,
-  };
-
-  dispatch({
-    type: "FILTER_POSTS",
-    payload: newData,
-  });
+export const filterPosts = async (dispatch, id) => {
+  await handleApiCall(
+    dispatch,
+    DELETE_POSTS_LOADING,
+    DELETE_POSTS_SUCCESS,
+    DELETE_POSTS_ERROR,
+    NetworkRequest.deletePost,
+    id
+  );
 };

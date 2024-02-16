@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  CREATE_POST,
+  CREATE_USER,
+  POSTS,
+} from "../../constants/routeConstants";
 
 const Navbar = () => {
   return (
     <nav>
       <div>
-        <Link to="/create">Create Post</Link>
+        <Link to={CREATE_POST}>Create Post</Link>
       </div>
       <div>
-        <Link to="/posts">All Posts</Link>
+        <Link to={POSTS}>All Posts</Link>
       </div>
       <div>
-        <Link to="/createUser">Create User</Link>
+        <Link to={CREATE_USER}>Create User</Link>
       </div>
     </nav>
   );
