@@ -1,15 +1,10 @@
-export const CREATE_POST_LOADING = "CREATE_POST_LOADING";
-export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
-export const CREATE_POST_ERROR = "CREATE_POST_ERROR";
+// Common type
+export const LOADING = "LOADING";
+export const SUCCESS = "SUCCESS";
+export const ERROR = "ERROR";
 
-export const DELETE_POST_LOADING = "DELETE_POST_LOADING";
-export const DELETE_POST_SUCCESS = "DELETE_POST_SUCCESS";
-export const DELETE_POST_ERROR = "DELETE_POST_ERROR";
-
-export const EDIT_POST_LOADING = "EDIT_POST_LOADING";
-export const EDIT_POST_SUCCESS = "EDIT_POST_SUCCESS";
-export const EDIT_POST_ERROR = "EDIT_POST_ERROR";
-
-export const GET_ALL_POSTS_LOADING = "GET_ALL_POSTS_LOADING";
-export const GET_ALL_POSTS_SUCCESS = "GET_ALL_POSTS_SUCCESS";
-export const GET_ALL_POSTS_ERROR = "GET_ALL_POSTS_ERROR";
+// Request type
+export const GET_ALL_POSTS = "GET_ALL_POSTS";
+export const DELETE_POST = "DELETE_POST";
+export const CREATE_POST = "CREATE_POST";
+export const EDIT_POST = "EDIT_POST";

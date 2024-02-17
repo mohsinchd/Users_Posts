@@ -1,23 +1,20 @@
 import {
-  GET_ALL_POSTS_LOADING,
-  GET_ALL_POSTS_SUCCESS,
-  GET_ALL_POSTS_ERROR,
-  GET_ALL_COMMENTS_SUCCESS,
-  GET_ALL_COMMENTS_ERROR,
-  GET_ALL_COMMENTS_LOADING,
-  DELETE_POSTS_LOADING,
-  DELETE_POSTS_ERROR,
-  DELETE_POSTS_SUCCESS,
+  GET_ALL_POSTS,
+  GET_ALL_COMMENTS,
+  DELETE_POSTS,
+  LOADING,
+  SUCCESS,
+  ERROR,
 } from "../constants/actionTypesPosts";
 
 export const postsReducer = (state, action) => {
   switch (action.type) {
-    case GET_ALL_POSTS_LOADING:
+    case GET_ALL_POSTS + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case GET_ALL_POSTS_SUCCESS:
+    case GET_ALL_POSTS + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -25,7 +22,7 @@ export const postsReducer = (state, action) => {
         error: "",
         posts: action.payload,
       };
-    case GET_ALL_POSTS_ERROR:
+    case GET_ALL_POSTS + ERROR:
       return {
         ...state,
         isLoading: false,
@@ -33,19 +30,19 @@ export const postsReducer = (state, action) => {
         error: action.payload,
         posts: [],
       };
-    case GET_ALL_COMMENTS_LOADING:
+    case GET_ALL_COMMENTS + LOADING:
       return {
         ...state,
         modalLoading: true,
       };
-    case GET_ALL_COMMENTS_SUCCESS:
+    case GET_ALL_COMMENTS + SUCCESS:
       return {
         ...state,
         modalLoading: false,
         isError: false,
         comments: action.payload,
       };
-    case GET_ALL_COMMENTS_ERROR:
+    case GET_ALL_COMMENTS + ERROR:
       return {
         ...state,
         modalLoading: false,
@@ -53,12 +50,12 @@ export const postsReducer = (state, action) => {
         error: action.payload,
         comments: [],
       };
-    case DELETE_POSTS_LOADING:
+    case DELETE_POSTS + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case DELETE_POSTS_SUCCESS:
+    case DELETE_POSTS + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -66,7 +63,7 @@ export const postsReducer = (state, action) => {
           (post) => String(post.id) !== String(action.payload)
         ),
       };
-    case DELETE_POSTS_ERROR:
+    case DELETE_POSTS + ERROR:
       return {
         ...state,
         isLoading: false,

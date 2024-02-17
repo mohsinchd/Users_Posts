@@ -1,3 +1,5 @@
+import { LOADING, SUCCESS, ERROR } from "../constants/actionTypesUsers";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const errorHandler = (error, dispatch, type) => {
@@ -13,29 +15,27 @@ export const errorHandler = (error, dispatch, type) => {
 
 export const handleApiCall = async (
   dispatch,
-  loadingType,
-  successType,
-  errorType,
+  requestType,
   apiCall,
   ...params
 ) => {
   try {
     dispatch({
-      type: loadingType,
+      type: requestType + LOADING,
     });
 
     const { data } = await apiCall(API_URL, ...params);
 
-    loadingType.startsWith("DELETE")
+    requestType.startsWith("DELETE")
       ? dispatch({
-          type: successType,
+          type: requestType + SUCCESS,
           payload: params[0],
         })
       : dispatch({
-          type: successType,
+          type: requestType + SUCCESS,
           payload: data,
         });
   } catch (error) {
-    errorHandler(error, dispatch, errorType);
+    errorHandler(error, dispatch, requestType + ERROR);
   }
 };

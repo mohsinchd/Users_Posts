@@ -9,3 +9,13 @@ export const GET_ALL_COMMENTS_ERROR = "GET_ALL_COMMENTS_ERROR";
 export const DELETE_POSTS_LOADING = "DELETE_POSTS_LOADING";
 export const DELETE_POSTS_SUCCESS = "DELETE_POSTS_SUCCESS";
 export const DELETE_POSTS_ERROR = "DELETE_POSTS_ERROR";
+
+// Common type
+export const LOADING = "LOADING";
+export const SUCCESS = "SUCCESS";
+export const ERROR = "ERROR";
+
+// Request type
+export const GET_ALL_POSTS = "GET_ALL_POSTS";
+export const GET_ALL_COMMENTS = "GET_ALL_COMMENTS";
+export const DELETE_POSTS = "DELETE_POSTS";

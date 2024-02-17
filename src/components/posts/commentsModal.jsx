@@ -16,7 +16,8 @@ const CommentsModal = ({ id, show, onHide }) => {
 
   return modalLoading ? null : (
     <Modal
-      {...props}
+      show={show}
+      onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered

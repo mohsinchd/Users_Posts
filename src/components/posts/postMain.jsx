@@ -11,7 +11,7 @@ const PostsMain = ({ id }) => {
 
   const nextPage = (page) => {
     const abortController = new AbortController();
-    getUserPosts(dispatch, id, abortController, limit, page);
+    getUserPosts(dispatch, id, abortController, page);
   };
 
   function fetchAllPosts(abortController) {

@@ -1,26 +1,21 @@
 import {
-  GET_ALL_POSTS_ERROR,
-  GET_ALL_POSTS_LOADING,
-  GET_ALL_POSTS_SUCCESS,
-  EDIT_POST_ERROR,
-  EDIT_POST_LOADING,
-  EDIT_POST_SUCCESS,
-  CREATE_POST_ERROR,
-  CREATE_POST_SUCCESS,
-  CREATE_POST_LOADING,
-  DELETE_POST_ERROR,
-  DELETE_POST_LOADING,
-  DELETE_POST_SUCCESS,
+  GET_ALL_POSTS,
+  CREATE_POST,
+  EDIT_POST,
+  DELETE_POST,
+  LOADING,
+  SUCCESS,
+  ERROR,
 } from "../constants/actionTypesPostCrud";
 
 export const postCrudReducer = (state, action) => {
   switch (action.type) {
-    case GET_ALL_POSTS_LOADING:
+    case GET_ALL_POSTS + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case GET_ALL_POSTS_SUCCESS:
+    case GET_ALL_POSTS + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -29,7 +24,7 @@ export const postCrudReducer = (state, action) => {
         posts: [state.post, ...action.payload],
       };
 
-    case GET_ALL_POSTS_ERROR:
+    case GET_ALL_POSTS + ERROR:
       return {
         ...state,
         isLoading: false,
@@ -38,12 +33,12 @@ export const postCrudReducer = (state, action) => {
         posts: [],
       };
 
-    case CREATE_POST_LOADING:
+    case CREATE_POST + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case CREATE_POST_SUCCESS:
+    case CREATE_POST + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -51,7 +46,7 @@ export const postCrudReducer = (state, action) => {
         error: "",
         post: action.payload,
       };
-    case CREATE_POST_ERROR:
+    case CREATE_POST + ERROR:
       return {
         ...state,
         isLoading: false,
@@ -60,12 +55,12 @@ export const postCrudReducer = (state, action) => {
         post: {},
       };
 
-    case DELETE_POST_LOADING:
+    case DELETE_POST + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case DELETE_POST_SUCCESS:
+    case DELETE_POST + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -75,7 +70,7 @@ export const postCrudReducer = (state, action) => {
         message: "Deleted Successfully",
         posts: state.posts.filter((post) => post.id !== action.payload),
       };
-    case DELETE_POST_ERROR:
+    case DELETE_POST + ERROR:
       return {
         ...state,
         isLoading: false,
@@ -84,12 +79,12 @@ export const postCrudReducer = (state, action) => {
         post: {},
       };
 
-    case EDIT_POST_LOADING:
+    case EDIT_POST + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case EDIT_POST_SUCCESS:
+    case EDIT_POST + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -97,7 +92,7 @@ export const postCrudReducer = (state, action) => {
         error: "",
         post: action.payload,
       };
-    case EDIT_POST_ERROR:
+    case EDIT_POST + ERROR:
       return {
         ...state,
         isLoading: false,

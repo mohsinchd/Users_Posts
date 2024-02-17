@@ -1,26 +1,21 @@
 import {
-  GET_ALL_USERS_LOADING,
-  GET_ALL_USERS_SUCCESS,
-  GET_ALL_USERS_ERROR,
-  CREATE_NEW_USER_LOADING,
-  CREATE_NEW_USER_SUCCESS,
-  CREATE_NEW_USER_ERROR,
-  EDIT_USER_LOADING,
-  EDIT_USER_SUCCESS,
-  EDIT_USER_ERROR,
-  DELETE_USER_LOADING,
-  DELETE_USER_SUCCESS,
-  DELETE_USER_ERROR,
+  GET_ALL_USER,
+  CREATE_NEW_USER,
+  EDIT_USER,
+  DELETE_USER,
+  LOADING,
+  SUCCESS,
+  ERROR,
 } from "../constants/actionTypesUsers";
 
 export const usersReducer = (state, action) => {
   switch (action.type) {
-    case GET_ALL_USERS_LOADING:
+    case GET_ALL_USER + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case GET_ALL_USERS_SUCCESS:
+    case GET_ALL_USER + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -28,7 +23,7 @@ export const usersReducer = (state, action) => {
         error: "",
         users: [state.user, ...action.payload],
       };
-    case GET_ALL_USERS_ERROR:
+    case GET_ALL_USER + ERROR:
       return {
         ...state,
         isLoading: false,
@@ -36,19 +31,19 @@ export const usersReducer = (state, action) => {
         error: action.payload,
         users: [],
       };
-    case CREATE_NEW_USER_LOADING:
+    case CREATE_NEW_USER + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case CREATE_NEW_USER_SUCCESS:
+    case CREATE_NEW_USER + SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
         user: action.payload,
       };
-    case CREATE_NEW_USER_ERROR:
+    case CREATE_NEW_USER + ERROR:
       return {
         ...state,
         isLoading: false,
@@ -58,12 +53,12 @@ export const usersReducer = (state, action) => {
         error: action.payload,
       };
 
-    case EDIT_USER_LOADING:
+    case EDIT_USER + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case EDIT_USER_SUCCESS:
+    case EDIT_USER + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -76,7 +71,7 @@ export const usersReducer = (state, action) => {
           }
         }),
       };
-    case EDIT_USER_ERROR:
+    case EDIT_USER + ERROR:
       return {
         ...state,
         isLoading: false,
@@ -84,12 +79,12 @@ export const usersReducer = (state, action) => {
         error: action.payload,
       };
 
-    case DELETE_USER_LOADING:
+    case DELETE_USER + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case DELETE_USER_SUCCESS:
+    case DELETE_USER + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -97,7 +92,7 @@ export const usersReducer = (state, action) => {
           (user) => String(user.id) !== String(action.payload)
         ),
       };
-    case DELETE_USER_ERROR:
+    case DELETE_USER + ERROR:
       return {
         ...state,
         isLoading: false,

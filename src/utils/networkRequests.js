@@ -15,9 +15,9 @@ export class NetworkRequest {
     return await axios.put(`${API_URL}/users/${id}`, newUser);
   };
 
-  static getUserPost = async (API_URL, id, page, limit, abortController) => {
+  static getUserPost = async (API_URL, id, page, abortController) => {
     return await axios.get(`${API_URL}/users/${id}/posts`, {
-      params: { _page: page, _limit: limit },
+      params: { _page: page },
       signal: abortController.signal,
     });
   };

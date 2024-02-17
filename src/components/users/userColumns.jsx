@@ -2,7 +2,7 @@ import { Link, generatePath } from "react-router-dom";
 import { deleteUser } from "../../actions/usersActions";
 import { useContext } from "react";
 import { UsersContext } from "../../context/mainContexts";
-import { EDIT_USER, POSTS } from "../../constants/routeConstants";
+import { EDIT_USER, USER_POSTS } from "../../constants/routeConstants";
 import CustomButton from "../shared/customButton";
 
 export const COLUMNS = [
@@ -31,7 +31,7 @@ export const COLUMNS = [
     accessor: "id",
     Cell: ({ value }) => {
       return (
-        <Link to={generatePath(POSTS, { id: value })}>
+        <Link to={generatePath(USER_POSTS, { id: value })}>
           <CustomButton className="btn btn-success btn-sm" label="View Posts" />
         </Link>
       );
