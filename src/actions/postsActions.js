@@ -1,6 +1,4 @@
-import { handleApiCall } from "../utils/helpers";
-
-import { NetworkRequest } from "../utils/networkRequests";
+import { requestHandler } from "../utils/helpers";
 
 import {
   GET_ALL_POSTS,
@@ -9,25 +7,13 @@ import {
 } from "../constants/actionTypesPosts";
 
 export const getUserPosts = async (dispatch, id, abortController, page = 1) => {
-  await handleApiCall(
-    dispatch,
-    GET_ALL_POSTS,
-    NetworkRequest.getUserPost,
-    id,
-    page,
-    abortController
-  );
+  await requestHandler(dispatch, GET_ALL_POSTS, id, page, abortController);
 };
 
 export const getPostComments = async (dispatch, id) => {
-  await handleApiCall(
-    dispatch,
-    GET_ALL_COMMENTS,
-    NetworkRequest.getPostComment,
-    id
-  );
+  await requestHandler(dispatch, GET_ALL_COMMENTS, id);
 };
 
 export const filterPosts = async (dispatch, id) => {
-  await handleApiCall(dispatch, DELETE_POSTS, NetworkRequest.deletePost, id);
+  await requestHandler(dispatch, DELETE_POSTS, id);
 };

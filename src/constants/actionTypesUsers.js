@@ -1,10 +1,10 @@
 // Common type
-export const LOADING = "LOADING";
-export const SUCCESS = "SUCCESS";
-export const ERROR = "ERROR";
+export const LOADING = "loading";
+export const SUCCESS = "success";
+export const ERROR = "error";
 
 // Request type
-export const GET_ALL_USER = "GET_ALL_USER";
-export const CREATE_NEW_USER = "CREATE_NEW_USER";
-export const EDIT_USER = "EDIT_USER";
-export const DELETE_USER = "DELETE_USER";
+export const GET_ALL_USER = "getAllUsers";
+export const CREATE_NEW_USER = "createNewUser";
+export const EDIT_USER = "editUser";
+export const DELETE_USER = "deleteUser";

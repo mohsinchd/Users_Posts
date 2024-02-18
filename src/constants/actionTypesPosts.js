@@ -1,21 +1,9 @@
-export const GET_ALL_POSTS_LOADING = "GET_ALL_POSTS_LOADING";
-export const GET_ALL_POSTS_SUCCESS = "GET_ALL_POSTS_SUCCESS";
-export const GET_ALL_POSTS_ERROR = "GET_ALL_POSTS_ERROR";
-
-export const GET_ALL_COMMENTS_LOADING = "GET_ALL_COMMENTS_LOADING";
-export const GET_ALL_COMMENTS_SUCCESS = "GET_ALL_COMMENTS_SUCCESS";
-export const GET_ALL_COMMENTS_ERROR = "GET_ALL_COMMENTS_ERROR";
-
-export const DELETE_POSTS_LOADING = "DELETE_POSTS_LOADING";
-export const DELETE_POSTS_SUCCESS = "DELETE_POSTS_SUCCESS";
-export const DELETE_POSTS_ERROR = "DELETE_POSTS_ERROR";
-
 // Common type
-export const LOADING = "LOADING";
-export const SUCCESS = "SUCCESS";
-export const ERROR = "ERROR";
+export const LOADING = "loading";
+export const SUCCESS = "success";
+export const ERROR = "error";
 
 // Request type
-export const GET_ALL_POSTS = "GET_ALL_POSTS";
-export const GET_ALL_COMMENTS = "GET_ALL_COMMENTS";
-export const DELETE_POSTS = "DELETE_POSTS";
+export const GET_ALL_POSTS = "getUserPost";
+export const GET_ALL_COMMENTS = "getPostComment";
+export const DELETE_POSTS = "deletePost";

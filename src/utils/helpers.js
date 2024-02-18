@@ -1,4 +1,5 @@
 import { LOADING, SUCCESS, ERROR } from "../constants/actionTypesUsers";
+import { NetworkRequest } from "./networkRequests";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -13,20 +14,17 @@ export const errorHandler = (error, dispatch, type) => {
   });
 };
 
-export const handleApiCall = async (
-  dispatch,
-  requestType,
-  apiCall,
-  ...params
-) => {
+export const requestHandler = async (dispatch, requestType, ...params) => {
   try {
+    const apiCall = NetworkRequest[requestType];
+
     dispatch({
       type: requestType + LOADING,
     });
 
     const { data } = await apiCall(API_URL, ...params);
 
-    requestType.startsWith("DELETE")
+    requestType.startsWith("delete")
       ? dispatch({
           type: requestType + SUCCESS,
           payload: params[0],

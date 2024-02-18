@@ -5,22 +5,20 @@ import {
   CREATE_POST,
 } from "../constants/actionTypesPostCrud";
 
-import { NetworkRequest } from "../utils/networkRequests";
-
-import { handleApiCall } from "../utils/helpers";
+import { requestHandler } from "../utils/helpers";
 
 export const createNewPost = async (dispatch, newData) => {
-  handleApiCall(dispatch, CREATE_POST, NetworkRequest.createNewPost, newData);
+  await requestHandler(dispatch, CREATE_POST, newData);
 };
 
 export const deletePost = async (dispatch, id) => {
-  handleApiCall(dispatch, DELETE_POST, NetworkRequest.deletePost, id);
+  await requestHandler(dispatch, DELETE_POST, id);
 };
 
 export const editPost = async (dispatch, id, newData) => {
-  handleApiCall(dispatch, EDIT_POST, NetworkRequest.editPost, id, newData);
+  await requestHandler(dispatch, EDIT_POST, id, newData);
 };
 
 export const getPosts = async (dispatch, query, abort) => {
-  handleApiCall(dispatch, GET_ALL_POSTS, NetworkRequest.getPosts, query, abort);
+  await requestHandler(dispatch, GET_ALL_POSTS, query, abort);
 };

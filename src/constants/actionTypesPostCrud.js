@@ -1,10 +1,10 @@
 // Common type
-export const LOADING = "LOADING";
-export const SUCCESS = "SUCCESS";
-export const ERROR = "ERROR";
+export const LOADING = "loading";
+export const SUCCESS = "success";
+export const ERROR = "error";
 
 // Request type
-export const GET_ALL_POSTS = "GET_ALL_POSTS";
-export const DELETE_POST = "DELETE_POST";
-export const CREATE_POST = "CREATE_POST";
-export const EDIT_POST = "EDIT_POST";
+export const GET_ALL_POSTS = "getPosts";
+export const DELETE_POST = "deletePost";
+export const CREATE_POST = "createNewPost";
+export const EDIT_POST = "editPost";

@@ -1,6 +1,4 @@
-import { handleApiCall } from "../utils/helpers";
-
-import { NetworkRequest } from "../utils/networkRequests";
+import { requestHandler } from "../utils/helpers";
 
 import {
   GET_ALL_USER,
@@ -10,34 +8,17 @@ import {
 } from "../constants/actionTypesUsers";
 
 export const getAllUsers = async (dispatch, query, abortController) => {
-  await handleApiCall(
-    dispatch,
-    GET_ALL_USER,
-    NetworkRequest.getAllUsers,
-    query,
-    abortController
-  );
+  await requestHandler(dispatch, GET_ALL_USER, query, abortController);
 };
 
 export const createNewUser = async (dispatch, newUser) => {
-  await handleApiCall(
-    dispatch,
-    CREATE_NEW_USER,
-    NetworkRequest.createNewUser,
-    newUser
-  );
+  await requestHandler(dispatch, CREATE_NEW_USER, newUser);
 };
 
 export const editUser = async (dispatch, newUser, id) => {
-  await handleApiCall(
-    dispatch,
-    EDIT_USER,
-    NetworkRequest.editUser,
-    id,
-    newUser
-  );
+  await requestHandler(dispatch, EDIT_USER, id, newUser);
 };
 
 export const deleteUser = async (dispatch, id) => {
-  await handleApiCall(dispatch, DELETE_USER, NetworkRequest.deleteUser, id);
+  await requestHandler(dispatch, DELETE_USER, id);
 };
