@@ -9,10 +9,11 @@ import Pagination from "../components/shared/pagination";
 import Loading from "../components/shared/loading";
 
 const Posts = () => {
-  const { dispatch, data } = useContext(PostCrud);
+  const {
+    dispatch,
+    data: { isLoading, posts },
+  } = useContext(PostCrud);
   const [searchParams, setSearchParams] = useSearchParams({ _page: 1, q: "" });
-
-  const { isLoading, posts } = data;
 
   const nextPage = (newPage) => {
     setSearchParams({
@@ -55,7 +56,12 @@ const Posts = () => {
           <>
             {posts.map((post) => {
               return post.id ? (
-                <PostCard key={post.id} post={post} id={post.id} />
+                <PostCard
+                  isAllPosts={true}
+                  key={post.id}
+                  post={post}
+                  postId={post.id}
+                />
               ) : null;
             })}
             {!searchParams.get("q") && (

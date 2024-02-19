@@ -9,8 +9,10 @@ import { useParams } from "react-router-dom";
 const UsersPosts = () => {
   const { id: postId } = useParams();
 
-  const { data, dispatch } = useContext(PostsContext);
-  const { isLoading, isError, error, posts } = data;
+  const {
+    data: { isLoading, isError, error, posts },
+    dispatch,
+  } = useContext(PostsContext);
 
   const nextPage = (page) => {
     const abortController = new AbortController();

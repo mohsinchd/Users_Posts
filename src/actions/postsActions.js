@@ -6,14 +6,19 @@ import {
   DELETE_POSTS,
 } from "../constants/actionTypesPosts";
 
-export const getUserPosts = async (dispatch, id, abortController, page = 1) => {
-  await requestHandler(dispatch, GET_ALL_POSTS, id, page, abortController);
+export const getUserPosts = async (
+  dispatch,
+  userId,
+  abortController,
+  page = 1
+) => {
+  await requestHandler(dispatch, GET_ALL_POSTS, userId, page, abortController);
 };
 
-export const getPostComments = async (dispatch, id) => {
-  await requestHandler(dispatch, GET_ALL_COMMENTS, id);
+export const getPostComments = async (dispatch, postId) => {
+  await requestHandler(dispatch, GET_ALL_COMMENTS, postId);
 };
 
-export const filterPosts = async (dispatch, id) => {
-  await requestHandler(dispatch, DELETE_POSTS, id);
+export const deletePosts = async (dispatch, postId) => {
+  await requestHandler(dispatch, DELETE_POSTS, postId);
 };

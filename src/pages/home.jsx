@@ -8,11 +8,12 @@ import { useSearchParams } from "react-router-dom";
 import Loading from "../components/shared/loading";
 
 const Home = () => {
-  const { data, dispatch } = useContext(UsersContext);
+  const {
+    data: { isLoading, isError, error, users },
+    dispatch,
+  } = useContext(UsersContext);
 
   const [searchParams, setSearchParams] = useSearchParams({ q: "" });
-
-  const { isLoading, isError, error, users } = data;
 
   const usersData = users.map((user) => {
     return {
