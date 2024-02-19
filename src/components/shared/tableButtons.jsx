@@ -9,6 +9,21 @@ const TableButtons = ({
   pageOptions,
   pageIndex,
 }) => {
+  const buttons = [
+    {
+      className: "btn btn-sm btn-primary me-1",
+      onClick: previousPage,
+      disabled: canPreviousPage,
+      label: "Prev",
+    },
+    {
+      className: "btn btn-sm btn-primary ms-1",
+      onClick: nextPage,
+      disabled: canNextPage,
+      label: "Next",
+    },
+  ];
+
   return (
     <div className="d-flex justify-content-center align-items-center">
       <span className="me-2">
@@ -17,18 +32,14 @@ const TableButtons = ({
           {pageIndex + 1} of {pageOptions.length}
         </strong>
       </span>
-      <CustomButton
-        className="btn btn-sm btn-primary me-1"
-        onClick={previousPage}
-        disabled={canPreviousPage}
-        label="Prev"
-      />
-      <CustomButton
-        className="btn btn-sm btn-primary ms-1"
-        onClick={nextPage}
-        disabled={canNextPage}
-        label="Next"
-      />
+      {buttons.map(({ className, onClick, disabled, label }) => (
+        <CustomButton
+          className={className}
+          onClick={onClick}
+          disabled={disabled}
+          label={label}
+        />
+      ))}
     </div>
   );
 };

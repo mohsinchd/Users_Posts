@@ -5,15 +5,13 @@ import { debounce } from "lodash";
 const PostsFilter = ({ setSearchParams, searchParams }) => {
   const [search, setSearch] = useState(searchParams.get("q"));
 
-  const handleChange = debounce((e) => {
-    setSearchParams({
-      _page: 1,
-      q: e.target.value,
-    });
-  }, 1000);
-
-  const onChangeHandler = (e) => {
-    handleChange(e);
+  const handleSearchChange = (e) => {
+    debounce((e) => {
+      setSearchParams({
+        _page: 1,
+        q: e.target.value,
+      });
+    }, 1000)(e);
     setSearch(e.target.value);
   };
 
@@ -25,7 +23,7 @@ const PostsFilter = ({ setSearchParams, searchParams }) => {
         className="form-control mb-3"
         placeholder="Search"
         style={{ width: "300px" }}
-        onChange={onChangeHandler}
+        onChange={handleSearchChange}
         value={search}
       />
     </span>

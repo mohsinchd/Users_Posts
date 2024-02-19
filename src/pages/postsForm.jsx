@@ -9,12 +9,10 @@ const PostsForm = () => {
   const { data, postsDispatch } = useContext(PostsContext);
   const { dispatch } = useContext(PostCrud);
 
-  const handleCreate = (values) => {
-    createNewPost(dispatch, values, data, postsDispatch);
-  };
-
-  const handleEdit = (values) => {
-    editPost(dispatch, id, values);
+  const onSubmit = (values) => {
+    id
+      ? editPost(dispatch, id, values)
+      : createNewPost(dispatch, values, data, postsDispatch);
   };
 
   return (
@@ -24,15 +22,13 @@ const PostsForm = () => {
         <PostForm
           initialValues={{ title: "", body: "" }}
           buttonTitle={"Edit Post"}
-          handleEdit={handleEdit}
-          isEditForm={true}
+          onSubmit={onSubmit}
         />
       ) : (
         <PostForm
           initialValues={{ title: "", body: "" }}
           buttonTitle={"Create Post"}
-          handleCreate={handleCreate}
-          isEditForm={false}
+          onSubmit={onSubmit}
         />
       )}
     </>

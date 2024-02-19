@@ -11,14 +11,14 @@ export const getAllUsers = async (dispatch, query, abortController) => {
   await requestHandler(dispatch, GET_ALL_USER, query, abortController);
 };
 
-export const createNewUser = async (dispatch, newUser) => {
-  await requestHandler(dispatch, CREATE_NEW_USER, newUser);
+export const createNewUser = async (dispatch, payload) => {
+  await requestHandler(dispatch, CREATE_NEW_USER, payload);
 };
 
-export const editUser = async (dispatch, newUser, id) => {
-  await requestHandler(dispatch, EDIT_USER, id, newUser);
+export const editUser = async (dispatch, payload, userId) => {
+  await requestHandler(dispatch, EDIT_USER, userId, payload);
 };
 
-export const deleteUser = async (dispatch, id) => {
-  await requestHandler(dispatch, DELETE_USER, id);
+export const deleteUser = async (dispatch, userId) => {
+  await requestHandler(dispatch, DELETE_USER, userId);
 };

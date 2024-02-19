@@ -2,7 +2,7 @@ import React from "react";
 import { debounce } from "lodash";
 
 const UsersFilter = ({ setSearchParams }) => {
-  const handleChange = debounce((e) => {
+  const handleSearchChange = debounce((e) => {
     setSearchParams({
       q: e.target.value,
     });
@@ -16,7 +16,7 @@ const UsersFilter = ({ setSearchParams }) => {
         className="form-control mb-3"
         placeholder="Search"
         style={{ width: "300px" }}
-        onChange={handleChange}
+        onChange={handleSearchChange}
       />
     </span>
   );

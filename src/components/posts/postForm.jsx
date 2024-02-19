@@ -4,23 +4,13 @@ import { validationSchema } from "../../utils/validationSchema";
 import { inputTypes } from "../../utils/inputTypes";
 import CustomInput from "./customInput";
 
-const PostForm = ({
-  initialValues,
-  buttonTitle,
-  handleEdit,
-  handleCreate,
-  isEditForm,
-}) => {
+const PostForm = ({ initialValues, buttonTitle, onSubmit }) => {
   const { handleChange, handleSubmit, handleBlur, errors, touched, values } =
     useFormik({
       initialValues,
       validationSchema,
-      onSubmit: submitHandler,
+      onSubmit,
     });
-
-  function submitHandler(values) {
-    isEditForm ? handleEdit(values) : handleCreate(values);
-  }
 
   return (
     <div>

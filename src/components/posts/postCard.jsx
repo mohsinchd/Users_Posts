@@ -5,19 +5,19 @@ import { Link, generatePath } from "react-router-dom";
 import { filterPosts } from "../../actions/postsActions";
 import { EDIT_POST } from "../../constants/routeConstants";
 
-const PostCard = ({ post, id }) => {
+const PostCard = ({ post, postId }) => {
   const [modalShow, setModalShow] = useState(false);
   const { dispatch } = useContext(PostsContext);
 
   const deleteHandler = () => {
-    filterPosts(dispatch, id);
+    filterPosts(dispatch, postId);
   };
 
   return (
     <>
       <div className="card card-body mb-3">
         <h3>
-          {post.title} - {id}
+          {post.title} - {postId}
         </h3>
         <p className="text-lead">{post.body}</p>
         <div>
@@ -31,7 +31,10 @@ const PostCard = ({ post, id }) => {
             Delete Post
           </button>
           <button className="ms-2 btn btn-dark">
-            <Link to={generatePath(EDIT_POST, { id })} className="nav-link">
+            <Link
+              to={generatePath(EDIT_POST, { id: postId })}
+              className="nav-link"
+            >
               Edit Post
             </Link>
           </button>
@@ -39,7 +42,7 @@ const PostCard = ({ post, id }) => {
       </div>
       <div>
         <CommentsModal
-          id={post.id}
+          postId={post.id}
           show={modalShow}
           onHide={() => setModalShow(false)}
         />

@@ -4,36 +4,24 @@ import { userValidationSchema } from "../../utils/validationSchema";
 import { inputTypesUser } from "../../utils/inputTypes";
 import { renderInput } from "./renderInput";
 
-const UserForm = ({
-  initialValues,
-  buttonTitle,
-  checkEdit,
-  handleEdit,
-  handleCreate,
-}) => {
+const UserForm = ({ initialValues, buttonTitle, onSubmit }) => {
   const formik = useFormik({
     initialValues,
     validationSchema: userValidationSchema,
-    onSubmit: submitHandler,
+    onSubmit,
   });
 
-  function submitHandler(values) {
-    checkEdit ? handleEdit(values) : handleCreate(values);
-  }
-
   return (
-    <>
-      <form>
-        {inputTypesUser.map((input) => renderInput(input, formik))}
-        <button
-          type="submit"
-          onClick={formik.handleSubmit}
-          className="btn btn-primary mt-2"
-        >
-          {buttonTitle}
-        </button>
-      </form>
-    </>
+    <form>
+      {inputTypesUser.map((input) => renderInput(input, formik))}
+      <button
+        type="submit"
+        onClick={formik.handleSubmit}
+        className="btn btn-primary mt-2"
+      >
+        {buttonTitle}
+      </button>
+    </form>
   );
 };
 

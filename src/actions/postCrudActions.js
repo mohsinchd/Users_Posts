@@ -7,16 +7,16 @@ import {
 
 import { requestHandler } from "../utils/helpers";
 
-export const createNewPost = async (dispatch, newData) => {
-  await requestHandler(dispatch, CREATE_POST, newData);
+export const createNewPost = async (dispatch, payload) => {
+  await requestHandler(dispatch, CREATE_POST, payload);
 };
 
-export const deletePost = async (dispatch, id) => {
-  await requestHandler(dispatch, DELETE_POST, id);
+export const deletePost = async (dispatch, postId) => {
+  await requestHandler(dispatch, DELETE_POST, postId);
 };
 
-export const editPost = async (dispatch, id, newData) => {
-  await requestHandler(dispatch, EDIT_POST, id, newData);
+export const editPost = async (dispatch, postId, payload) => {
+  await requestHandler(dispatch, EDIT_POST, postId, payload);
 };
 
 export const getPosts = async (dispatch, query, abort) => {

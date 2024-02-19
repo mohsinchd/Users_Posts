@@ -14,12 +14,8 @@ const UsersForm = () => {
     data.users.length > 0 &&
     data.users.find((user) => String(user.id) === String(id));
 
-  const handleEdit = (values) => {
-    editUser(dispatch, values, id);
-  };
-
-  const handleCreate = (values) => {
-    createNewUser(dispatch, values);
+  const onSubmit = (values) => {
+    id ? editUser(dispatch, values, id) : createNewUser(dispatch, values);
   };
 
   return (
@@ -27,9 +23,7 @@ const UsersForm = () => {
       <h1>{id ? "Edit User" : "Create User"}</h1>
       {id ? (
         <UserForm
-          handleCreate={handleCreate}
-          handleEdit={handleEdit}
-          checkEdit={true}
+          onSubmit={onSubmit}
           initialValues={{
             name: user.name,
             username: user.username,
@@ -56,10 +50,8 @@ const UsersForm = () => {
         />
       ) : (
         <UserForm
+          onSubmit={onSubmit}
           initialValues={initialValuesUser}
-          handleCreate={handleCreate}
-          handleEdit={handleEdit}
-          checkEdit={false}
           buttonTitle={"Create User"}
         />
       )}
