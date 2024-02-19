@@ -19,6 +19,8 @@ export const editPost = async (dispatch, postId, payload) => {
   await requestHandler(dispatch, EDIT_POST, postId, payload);
 };
 
-export const getPosts = async (dispatch, query, abort) => {
-  await requestHandler(dispatch, GET_ALL_POSTS, query, abort);
+export const getPosts = async (dispatch, query, handleAbortController) => {
+  const abortController = new AbortController();
+  handleAbortController(abortController);
+  await requestHandler(dispatch, GET_ALL_POSTS, query, abortController);
 };

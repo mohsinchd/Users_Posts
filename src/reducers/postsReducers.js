@@ -1,20 +1,18 @@
 import {
-  GET_ALL_POSTS,
+  GET_USER_POSTS,
   GET_ALL_COMMENTS,
   DELETE_POSTS,
-  LOADING,
-  SUCCESS,
-  ERROR,
 } from "../constants/actionTypesPosts";
+import { LOADING, SUCCESS, ERROR } from "../constants/commonActionTypes";
 
 export const postsReducer = (state, action) => {
   switch (action.type) {
-    case GET_ALL_POSTS + LOADING:
+    case GET_USER_POSTS + LOADING:
       return {
         ...state,
         isLoading: true,
       };
-    case GET_ALL_POSTS + SUCCESS:
+    case GET_USER_POSTS + SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -22,7 +20,7 @@ export const postsReducer = (state, action) => {
         error: "",
         posts: action.payload,
       };
-    case GET_ALL_POSTS + ERROR:
+    case GET_USER_POSTS + ERROR:
       return {
         ...state,
         isLoading: false,

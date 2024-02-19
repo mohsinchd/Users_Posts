@@ -20,25 +20,30 @@ const Posts = () => {
       _page: newPage,
       q: searchParams.get("q"),
     });
-
-    console.log(searchParams.get("_page"), searchParams.get("q"));
   };
 
-  function fetchPosts(abort) {
-    const query = `_page=${searchParams.get("_page")}&q=${searchParams.get(
-      "q"
-    )}`;
-
-    getPosts(dispatch, query, abort);
-  }
-
   useEffect(() => {
-    const abort = new AbortController();
+    let abort;
 
-    fetchPosts(abort);
+    async function fetchPosts() {
+      const _page = searchParams.get("_page");
+      const q = searchParams.get("q");
+      const query = {
+        _page,
+        q,
+      };
+
+      getPosts(dispatch, query, (abortController) => {
+        abort = abortController;
+      });
+    }
+
+    fetchPosts();
 
     return () => {
-      abort.abort();
+      if (abort) {
+        abort.abort();
+      }
     };
   }, [searchParams]);
 

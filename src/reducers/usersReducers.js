@@ -3,10 +3,8 @@ import {
   CREATE_NEW_USER,
   EDIT_USER,
   DELETE_USER,
-  LOADING,
-  SUCCESS,
-  ERROR,
 } from "../constants/actionTypesUsers";
+import { LOADING, SUCCESS, ERROR } from "../constants/commonActionTypes";
 
 export const usersReducer = (state, action) => {
   switch (action.type) {

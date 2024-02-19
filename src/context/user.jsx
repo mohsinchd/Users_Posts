@@ -1,13 +1,13 @@
 import React, { useReducer } from "react";
 import { usersReducer } from "../reducers/usersReducers";
-import { initialUsersState } from "./mainContexts";
+import { DataHelpers } from "../helpers/dataHelpers";
 
 import { UsersContext } from "./mainContexts";
 
 const USER = ({ children }) => {
   const [usersData, usersDispatch] = useReducer(
     usersReducer,
-    initialUsersState
+    DataHelpers.initialUsersState()
   );
 
   return (

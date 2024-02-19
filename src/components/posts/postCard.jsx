@@ -1,20 +1,16 @@
 import React, { useContext, useState } from "react";
 import CommentsModal from "./commentsModal";
-import { PostCrud, PostsContext } from "../../context/mainContexts";
+import { PostsContext } from "../../context/mainContexts";
 import { Link, generatePath } from "react-router-dom";
 import { deletePosts } from "../../actions/postsActions";
-import { deletePost } from "../../actions/postCrudActions";
 import { EDIT_POST } from "../../constants/routeConstants";
 
-const PostCard = ({ post, postId, isAllPosts }) => {
+const PostCard = ({ post, postId }) => {
   const [modalShow, setModalShow] = useState(false);
   const { dispatch } = useContext(PostsContext);
-  const { dispatch: postCrudDispatch } = useContext(PostCrud);
 
   const deleteHandler = () => {
-    isAllPosts
-      ? deletePost(postCrudDispatch, postId)
-      : deletePosts(dispatch, postId);
+    deletePosts(dispatch, postId);
   };
 
   return (

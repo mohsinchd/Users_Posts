@@ -9,7 +9,7 @@ import { getPostComments } from "../../actions/postsActions";
 const CommentsModal = ({ postId, show, onHide }) => {
   const {
     dispatch,
-    data: { modalLoading, comments },
+    data: { isLoading, comments },
   } = useContext(PostsContext);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const CommentsModal = ({ postId, show, onHide }) => {
   }, [show]);
 
   return (
-    <Loading modalLoading={modalLoading}>
+    <Loading isLoading={isLoading}>
       <Modal
         show={show}
         onHide={onHide}

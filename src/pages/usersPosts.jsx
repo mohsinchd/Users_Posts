@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react";
 import { PostsContext } from "../context/mainContexts";
 import { getUserPosts } from "../actions/postsActions";
 import PostCard from "../components/posts/postCard";
-import Pagination from "../components/shared/pagination";
 import Loading from "../components/shared/loading";
 import { useParams } from "react-router-dom";
 
@@ -14,22 +13,17 @@ const UsersPosts = () => {
     dispatch,
   } = useContext(PostsContext);
 
-  const nextPage = (page) => {
-    const abortController = new AbortController();
-    getUserPosts(dispatch, postId, abortController, page);
-  };
-
-  function fetchAllPosts(abortController) {
-    getUserPosts(dispatch, postId, abortController);
-  }
-
   useEffect(() => {
-    const abortController = new AbortController();
+    let abort;
 
-    fetchAllPosts(abortController);
+    getUserPosts(dispatch, postId, (abortController) => {
+      abort = abortController;
+    });
 
     return () => {
-      abortController.abort();
+      if (abort) {
+        abort.abort();
+      }
     };
   }, []);
 
@@ -43,7 +37,6 @@ const UsersPosts = () => {
           <PostCard key={post.id} post={post} postId={post.id} />
         ) : null;
       })}
-      <Pagination totalPosts={10} postPerPage={5} nextPage={nextPage} />
     </Loading>
   );
 };

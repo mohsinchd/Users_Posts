@@ -1,18 +1,15 @@
 import { requestHandler } from "../utils/helpers";
 
 import {
-  GET_ALL_POSTS,
+  GET_USER_POSTS,
   GET_ALL_COMMENTS,
   DELETE_POSTS,
 } from "../constants/actionTypesPosts";
 
-export const getUserPosts = async (
-  dispatch,
-  userId,
-  abortController,
-  page = 1
-) => {
-  await requestHandler(dispatch, GET_ALL_POSTS, userId, page, abortController);
+export const getUserPosts = async (dispatch, userId, handleAbortController) => {
+  const abortController = new AbortController();
+  handleAbortController(abortController);
+  await requestHandler(dispatch, GET_USER_POSTS, userId, abortController);
 };
 
 export const getPostComments = async (dispatch, postId) => {

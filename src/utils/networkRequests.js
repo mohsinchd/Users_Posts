@@ -2,7 +2,8 @@ import axios from "axios";
 
 export class NetworkRequest {
   static getAllUsers = async (API_URL, query, abortController) => {
-    return await axios.get(`${API_URL}/users?${query}`, {
+    return await axios.get(`${API_URL}/users`, {
+      params: { q: query },
       signal: abortController.signal,
     });
   };
@@ -15,9 +16,8 @@ export class NetworkRequest {
     return await axios.put(`${API_URL}/users/${id}`, newUser);
   };
 
-  static getUserPost = async (API_URL, id, page, abortController) => {
+  static getUserPost = async (API_URL, id, abortController) => {
     return await axios.get(`${API_URL}/users/${id}/posts`, {
-      params: { _page: page },
       signal: abortController.signal,
     });
   };
@@ -39,7 +39,8 @@ export class NetworkRequest {
   };
 
   static getPosts = async (API_URL, query, abort) => {
-    return await axios.get(`${API_URL}/posts?${query}`, {
+    return await axios.get(`${API_URL}/posts`, {
+      params: { ...query },
       signal: abort.signal,
     });
   };

@@ -2,15 +2,15 @@ import { CREATE_POST, CREATE_USER, POSTS } from "../constants/routeConstants";
 
 export const links = [
   {
-    to: CREATE_POST,
+    path: CREATE_POST,
     label: "Create Post",
   },
   {
-    to: CREATE_USER,
+    path: CREATE_USER,
     label: "Create User",
   },
   {
-    to: POSTS,
+    path: POSTS,
     label: "All Posts",
   },
 ];

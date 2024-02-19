@@ -3,10 +3,8 @@ import {
   CREATE_POST,
   EDIT_POST,
   DELETE_POST,
-  LOADING,
-  SUCCESS,
-  ERROR,
 } from "../constants/actionTypesPostCrud";
+import { LOADING, SUCCESS, ERROR } from "../constants/commonActionTypes";
 
 export const postCrudReducer = (state, action) => {
   switch (action.type) {

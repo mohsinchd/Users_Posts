@@ -5,9 +5,9 @@ import { links } from "../../utils/links";
 const Navbar = () => {
   return (
     <nav>
-      {links.map(({ to, label }) => (
-        <div key={to}>
-          <Link to={to}>{label}</Link>
+      {links.map(({ path, label }) => (
+        <div key={path}>
+          <Link to={path}>{label}</Link>
         </div>
       ))}
     </nav>

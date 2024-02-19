@@ -7,7 +7,9 @@ import {
   CREATE_NEW_USER,
 } from "../constants/actionTypesUsers";
 
-export const getAllUsers = async (dispatch, query, abortController) => {
+export const getAllUsers = async (dispatch, query, handleAbortController) => {
+  const abortController = new AbortController();
+  handleAbortController(abortController);
   await requestHandler(dispatch, GET_ALL_USER, query, abortController);
 };
 

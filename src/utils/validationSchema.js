@@ -1,38 +1,29 @@
 import * as yup from "yup";
 
 export const validationSchema = yup.object({
-  title: yup
-    .string()
-    .required("Title is Required")
-    .max(100, "Title cannot be greater than 100 characters"),
-  body: yup.string().required("Body of the Post is Required."),
+  title: yup.string().required().max(100).label("Title"),
+  body: yup.string().required().label("Body"),
 });
 
 export const userValidationSchema = yup.object({
-  name: yup.string().required("Name is Required"),
-  username: yup.string().required("Username is Required"),
-  email: yup
-    .string()
-    .email("Please Enter Valid Email")
-    .required("Email is Required"),
+  name: yup.string().required().label("Name"),
+  username: yup.string().required().label("Username"),
+  email: yup.string().email().required().label("Email"),
   address: yup.object({
-    street: yup.string().required("Street is required"),
-    suite: yup.string().required("Suite is required"),
-    city: yup.string().required("City is Required"),
-    zipcode: yup.string().required("Zipcode is required"),
+    street: yup.string().required().label("Street"),
+    suite: yup.string().required().label("Suite"),
+    city: yup.string().required().label("City"),
+    zipcode: yup.string().required().label("ZipCode"),
     geo: yup.object({
       lat: yup.string(),
       lng: yup.string(),
     }),
   }),
-  phone: yup.string().required("Phone Number is Required"),
-  website: yup
-    .string()
-    .url("Invalid Website URL")
-    .required("Website is Required"),
+  phone: yup.string().required().label("PhoneNumber"),
+  website: yup.string().url().required().label("Website"),
   company: yup.object({
-    name: yup.string().required("Company name is required"),
-    catchPhrase: yup.string().required("Catch phrase is required"),
-    bs: yup.string().required("BS is required"),
+    name: yup.string().required().label("Company"),
+    catchPhrase: yup.string().required().label("Catch Phrase"),
+    bs: yup.string().required().label("BS"),
   }),
 });

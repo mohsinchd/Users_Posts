@@ -18,19 +18,11 @@ const PostsForm = () => {
   return (
     <>
       <h1>{id ? "Edit Post" : "Create Post"}</h1>
-      {id ? (
-        <PostForm
-          initialValues={{ title: "", body: "" }}
-          buttonTitle={"Edit Post"}
-          onSubmit={onSubmit}
-        />
-      ) : (
-        <PostForm
-          initialValues={{ title: "", body: "" }}
-          buttonTitle={"Create Post"}
-          onSubmit={onSubmit}
-        />
-      )}
+      <PostForm
+        initialValues={{ title: "", body: "" }}
+        buttonTitle={id ? "Edit Post" : "Create Post"}
+        onSubmit={onSubmit}
+      />
     </>
   );
 };

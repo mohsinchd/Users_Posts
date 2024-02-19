@@ -1,13 +1,10 @@
-import { LOADING, SUCCESS, ERROR } from "../constants/actionTypesUsers";
+import { LOADING, SUCCESS, ERROR } from "../constants/commonActionTypes";
 import { NetworkRequest } from "./networkRequests";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const errorHandler = (error, dispatch, type) => {
-  const errorMessage =
-    error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message;
+  const errorMessage = error.response.data.message ?? error.message;
   dispatch({
     type,
     payload: errorMessage,
