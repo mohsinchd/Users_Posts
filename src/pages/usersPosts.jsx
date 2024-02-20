@@ -13,17 +13,18 @@ const UsersPosts = () => {
     dispatch,
   } = useContext(PostsContext);
 
-  useEffect(() => {
+  function fetchUsersPosts() {
     let abort;
-
     getUserPosts(dispatch, postId, (abortController) => {
       abort = abortController;
     });
+    return abort;
+  }
 
+  useEffect(() => {
+    const abort = fetchUsersPosts();
     return () => {
-      if (abort) {
-        abort.abort();
-      }
+      if (abort) abort.abort();
     };
   }, []);
 
