@@ -21,15 +21,10 @@ export const requestHandler = async (dispatch, requestType, ...params) => {
 
     const { data } = await apiCall(API_URL, ...params);
 
-    requestType.startsWith("delete")
-      ? dispatch({
-          type: requestType + SUCCESS,
-          payload: params[0],
-        })
-      : dispatch({
-          type: requestType + SUCCESS,
-          payload: data,
-        });
+    dispatch({
+      type: requestType + SUCCESS,
+      payload: requestType.startsWith("delete") ? params[0] : data,
+    });
   } catch (error) {
     errorHandler(error, dispatch, requestType + ERROR);
   }

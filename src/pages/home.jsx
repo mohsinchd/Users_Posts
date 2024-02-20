@@ -28,22 +28,19 @@ const Home = () => {
     };
   });
 
-  useEffect(() => {
+  function fetchUsers() {
     let abort;
+    const query = `${searchParams.get("q")}`;
+    getAllUsers(dispatch, query, (abortController) => {
+      abort = abortController;
+    });
+    return abort;
+  }
 
-    async function fetchUsers() {
-      const query = `${searchParams.get("q")}`;
-      getAllUsers(dispatch, query, (abortController) => {
-        abort = abortController;
-      });
-    }
-
-    fetchUsers();
-
+  useEffect(() => {
+    const abort = fetchUsers();
     return () => {
-      if (abort) {
-        abort.abort();
-      }
+      if (abort) abort.abort();
     };
   }, [searchParams]);
 

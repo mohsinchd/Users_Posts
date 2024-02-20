@@ -7,7 +7,7 @@ import { PostsContext } from "./mainContexts";
 const POST = ({ children }) => {
   const [data, dispatch] = useReducer(
     postsReducer,
-    DataHelpers.initialPostsState()
+    DataHelpers.initialPostData()
   );
 
   return (

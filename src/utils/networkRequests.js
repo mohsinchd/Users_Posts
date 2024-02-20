@@ -1,55 +1,41 @@
 import axios from "axios";
 
 export class NetworkRequest {
-  static getAllUsers = async (API_URL, query, abortController) => {
-    return await axios.get(`${API_URL}/users`, {
+  static getAllUsers = (API_URL, query, abortController) =>
+    axios.get(`${API_URL}/users`, {
       params: { q: query },
       signal: abortController.signal,
     });
-  };
 
-  static createNewUser = async (API_URL, newUser) => {
-    return await axios.post(`${API_URL}/users`, newUser);
-  };
+  static createNewUser = (API_URL, newUser) =>
+    axios.post(`${API_URL}/users`, newUser);
 
-  static editUser = async (API_URL, id, newUser) => {
-    return await axios.put(`${API_URL}/users/${id}`, newUser);
-  };
+  static editUser = (API_URL, id, newUser) =>
+    axios.put(`${API_URL}/users/${id}`, newUser);
 
-  static getUserPost = async (API_URL, id, abortController) => {
-    return await axios.get(`${API_URL}/users/${id}/posts`, {
+  static getUserPost = (API_URL, id, abortController) =>
+    axios.get(`${API_URL}/users/${id}/posts`, {
       signal: abortController.signal,
     });
-  };
 
-  static getPostComment = async (API_URL, id) => {
-    return await axios.get(`${API_URL}/posts/${id}/comments`);
-  };
+  static getPostComment = (API_URL, id) =>
+    axios.get(`${API_URL}/posts/${id}/comments`);
 
-  static createNewPost = async (API_URL, newData) => {
-    return await axios.post(`${API_URL}/posts`, newData);
-  };
+  static createNewPost = (API_URL, newData) =>
+    axios.post(`${API_URL}/posts`, newData);
 
-  static deletePost = async (API_URL, id) => {
-    return await axios.delete(`${API_URL}/posts/${id}`);
-  };
+  static deletePost = (API_URL, id) => axios.delete(`${API_URL}/posts/${id}`);
 
-  static editPost = async (API_URL, id, newData) => {
-    return await axios.put(`${API_URL}/posts/${id}`, newData);
-  };
+  static editPost = (API_URL, id, newData) =>
+    axios.put(`${API_URL}/posts/${id}`, newData);
 
-  static getPosts = async (API_URL, query, abort) => {
-    return await axios.get(`${API_URL}/posts`, {
+  static getPosts = (API_URL, query, abort) =>
+    axios.get(`${API_URL}/posts`, {
       params: { ...query },
       signal: abort.signal,
     });
-  };
 
-  static deleteUser = async (API_URL, id) => {
-    return await axios.delete(`${API_URL}/users/${id}`);
-  };
+  static deleteUser = (API_URL, id) => axios.delete(`${API_URL}/users/${id}`);
 
-  static deletePost = async (API_URL, id) => {
-    return await axios.delete(`${API_URL}/posts/${id}`);
-  };
+  static deletePost = (API_URL, id) => axios.delete(`${API_URL}/posts/${id}`);
 }

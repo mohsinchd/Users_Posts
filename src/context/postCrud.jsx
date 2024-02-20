@@ -6,7 +6,7 @@ import { PostCrud } from "./mainContexts";
 const POSTCRUD = ({ children }) => {
   const [postCrudData, postCrudDispatch] = useReducer(
     postCrudReducer,
-    DataHelpers.initialPostCrud()
+    DataHelpers.initialPostCrudData()
   );
   return (
     <PostCrud.Provider

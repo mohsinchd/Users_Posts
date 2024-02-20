@@ -22,26 +22,23 @@ const Posts = () => {
     });
   };
 
-  useEffect(() => {
+  function fetchPosts() {
+    const query = {
+      _page: searchParams.get("_page"),
+      q: searchParams.get("q"),
+    };
+
     let abort;
+    getPosts(dispatch, query, (abortController) => {
+      abort = abortController;
+    });
+    return abort;
+  }
 
-    async function fetchPosts() {
-      const query = {
-        _page: searchParams.get("_page"),
-        q: searchParams.get("q"),
-      };
-
-      getPosts(dispatch, query, (abortController) => {
-        abort = abortController;
-      });
-    }
-
-    fetchPosts();
-
+  useEffect(() => {
+    const abort = fetchPosts();
     return () => {
-      if (abort) {
-        abort.abort();
-      }
+      if (abort) abort.abort();
     };
   }, [searchParams]);
 

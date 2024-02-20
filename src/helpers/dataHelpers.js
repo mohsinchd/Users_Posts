@@ -1,5 +1,5 @@
 export class DataHelpers {
-  static initialUsersState = () => {
+  static initialUsersData = () => {
     return {
       isLoading: true,
       isError: false,
@@ -9,7 +9,7 @@ export class DataHelpers {
     };
   };
 
-  static initialPostsState = () => {
+  static initialPostData = () => {
     return {
       isLoading: true,
       modalLoading: true,
@@ -20,7 +20,7 @@ export class DataHelpers {
     };
   };
 
-  static initialPostCrud = () => {
+  static initialPostCrudData = () => {
     return {
       isLoading: true,
       isError: false,

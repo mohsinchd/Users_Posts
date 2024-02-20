@@ -7,7 +7,7 @@ import { UsersContext } from "./mainContexts";
 const USER = ({ children }) => {
   const [usersData, usersDispatch] = useReducer(
     usersReducer,
-    DataHelpers.initialUsersState()
+    DataHelpers.initialUsersData()
   );
 
   return (
