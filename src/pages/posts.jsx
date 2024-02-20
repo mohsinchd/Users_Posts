@@ -26,11 +26,9 @@ const Posts = () => {
     let abort;
 
     async function fetchPosts() {
-      const _page = searchParams.get("_page");
-      const q = searchParams.get("q");
       const query = {
-        _page,
-        q,
+        _page: searchParams.get("_page"),
+        q: searchParams.get("q"),
       };
 
       getPosts(dispatch, query, (abortController) => {
